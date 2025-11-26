@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { withExperiment } from "probat/runtime";
+import { PROBAT_COMPONENTS, PROBAT_REGISTRIES } from "probat/index";
 
-export default function App() {
+const __PROBAT_KEY__ = "App.tsx";
+
+const App = () => {
     const [count, setCount] = React.useState(0);
 
     return (
@@ -41,6 +45,15 @@ export default function App() {
         </View>
     );
 }
+
+// Probat Generate Lines.
+export default (() => {
+  const meta = PROBAT_COMPONENTS[__PROBAT_KEY__];
+  const reg  = PROBAT_REGISTRIES[__PROBAT_KEY__] as Record<string, React.ComponentType<any>> | undefined;
+  return (meta?.proposalId && reg)
+    ? withExperiment<any>(App as any, { proposalId: meta.proposalId, registry: reg })
+    : App;
+})();
 
 const styles = StyleSheet.create({
     container: {
@@ -133,4 +146,3 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF3B30',
     },
 });
-
