@@ -1,17 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { withExperiment } from "probat/runtime";
-import { PROBAT_COMPONENTS, PROBAT_REGISTRIES } from "probat/index";
 
-const __PROBAT_KEY__ = "App.tsx";
-
-const App = () => {
+export default function App() {
     const [count, setCount] = React.useState(0);
 
     return (
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <Text style={styles.title}>React Native Test App</Text>
                 <Text style={styles.subtitle}>Testing Component Previews</Text>
@@ -46,19 +42,10 @@ const App = () => {
     );
 }
 
-// Probat Generate Lines.
-export default (() => {
-  const meta = PROBAT_COMPONENTS[__PROBAT_KEY__];
-  const reg  = PROBAT_REGISTRIES[__PROBAT_KEY__] as Record<string, React.ComponentType<any>> | undefined;
-  return (meta?.proposalId && reg)
-    ? withExperiment<any>(App as any, { proposalId: meta.proposalId, registry: reg })
-    : App;
-})();
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#1C1C1E',
     },
     scrollContent: {
         padding: 20,
@@ -67,17 +54,17 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: '#333',
+        color: '#FFFFFF',
         marginTop: 40,
         marginBottom: 10,
     },
     subtitle: {
         fontSize: 18,
-        color: '#666',
+        color: '#8E8E93',
         marginBottom: 30,
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: '#2C2C2E',
         borderRadius: 12,
         padding: 20,
         marginVertical: 10,
@@ -88,43 +75,43 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 3,
     },
     cardTitle: {
         fontSize: 20,
         fontWeight: '600',
-        color: '#333',
+        color: '#FFFFFF',
         marginBottom: 15,
         textAlign: 'center',
     },
     countText: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: '#007AFF',
+        color: '#5856D6',
         textAlign: 'center',
         marginVertical: 20,
     },
     button: {
-        backgroundColor: '#007AFF',
+        backgroundColor: '#5856D6',
         padding: 15,
         borderRadius: 8,
         marginVertical: 5,
         alignItems: 'center',
     },
     buttonSecondary: {
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         borderWidth: 2,
-        borderColor: '#007AFF',
+        borderColor: '#5856D6',
     },
     buttonText: {
-        color: '#fff',
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '600',
     },
     buttonTextSecondary: {
-        color: '#007AFF',
+        color: '#5856D6',
     },
     row: {
         flexDirection: 'row',

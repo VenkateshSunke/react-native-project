@@ -1,21 +1,18 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { withExperiment } from "probat/runtime";
-import { PROBAT_COMPONENTS, PROBAT_REGISTRIES } from "probat/index";
 
-const __PROBAT_KEY__ = "App.tsx";
-
-const App = () => {
+export default function App() {
     const [count, setCount] = React.useState(0);
 
     return (
         <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
+            <View style={styles.header}>
+                <Text style={styles.headerTitle}>React Native Test App</Text>
+                <Text style={styles.headerSubtitle}>Testing Component Previews</Text>
+            </View>
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                <Text style={styles.title}>React Native Test App</Text>
-                <Text style={styles.subtitle}>Testing Component Previews</Text>
-
                 <View style={styles.card}>
                     <Text style={styles.cardTitle}>Counter Example</Text>
                     <Text style={styles.countText}>{count}</Text>
@@ -46,55 +43,55 @@ const App = () => {
     );
 }
 
-// Probat Generate Lines.
-export default (() => {
-  const meta = PROBAT_COMPONENTS[__PROBAT_KEY__];
-  const reg  = PROBAT_REGISTRIES[__PROBAT_KEY__] as Record<string, React.ComponentType<any>> | undefined;
-  return (meta?.proposalId && reg)
-    ? withExperiment<any>(App as any, { proposalId: meta.proposalId, registry: reg })
-    : App;
-})();
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#F2F2F7',
+    },
+    header: {
+        width: '100%',
+        backgroundColor: '#5856D6',
+        paddingVertical: 40,
+        paddingHorizontal: 20,
+        paddingTop: 60,
+        alignItems: 'center',
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
+        marginBottom: 10,
+    },
+    headerTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        marginBottom: 8,
+    },
+    headerSubtitle: {
+        fontSize: 16,
+        color: 'rgba(255, 255, 255, 0.9)',
     },
     scrollContent: {
         padding: 20,
         alignItems: 'center',
     },
-    title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        color: '#333',
-        marginTop: 40,
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 18,
-        color: '#666',
-        marginBottom: 30,
-    },
     card: {
         backgroundColor: '#fff',
-        borderRadius: 12,
-        padding: 20,
+        borderRadius: 16,
+        padding: 24,
         marginVertical: 10,
         width: '100%',
         maxWidth: 400,
-        shadowColor: '#000',
+        shadowColor: '#5856D6',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 4,
         },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+        elevation: 5,
     },
     cardTitle: {
         fontSize: 20,
-        fontWeight: '600',
+        fontWeight: '700',
         color: '#333',
         marginBottom: 15,
         textAlign: 'center',
@@ -102,21 +99,21 @@ const styles = StyleSheet.create({
     countText: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: '#007AFF',
+        color: '#5856D6',
         textAlign: 'center',
         marginVertical: 20,
     },
     button: {
-        backgroundColor: '#007AFF',
-        padding: 15,
-        borderRadius: 8,
-        marginVertical: 5,
+        backgroundColor: '#5856D6',
+        padding: 16,
+        borderRadius: 12,
+        marginVertical: 6,
         alignItems: 'center',
     },
     buttonSecondary: {
         backgroundColor: '#fff',
         borderWidth: 2,
-        borderColor: '#007AFF',
+        borderColor: '#5856D6',
     },
     buttonText: {
         color: '#fff',
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     buttonTextSecondary: {
-        color: '#007AFF',
+        color: '#5856D6',
     },
     row: {
         flexDirection: 'row',
@@ -134,7 +131,7 @@ const styles = StyleSheet.create({
     box: {
         width: 60,
         height: 60,
-        borderRadius: 8,
+        borderRadius: 12,
     },
     boxBlue: {
         backgroundColor: '#007AFF',
